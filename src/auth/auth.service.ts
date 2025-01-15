@@ -20,10 +20,16 @@ export class AuthService {
     const user = await this.userService.findByEmail({ email });
     if (user) throw new BadRequestException('User Already Exist');
     const hashedPass = await bcrypt.hash(password, 10);
-    return await this.userService.create({
+    const newUser = await this.userService.create({
       email,
       password: hashedPass,
     });
+    const payload = {
+      sub: newUser._id,
+    };
+    return {
+      accesstoken: await this.jwtService.signAsync(payload, {}),
+    };
   }
 
   async SignIn(SignInDto: SignInDto) {
@@ -35,11 +41,8 @@ export class AuthService {
     const payload = {
       sub: user._id,
     };
-    const expire = rememberMe ? '7d' : '1d';
     return {
-      accesstoken: await this.jwtService.signAsync(payload, {
-        expiresIn: expire,
-      }),
+      accesstoken: await this.jwtService.signAsync(payload, {}),
     };
   }
 }

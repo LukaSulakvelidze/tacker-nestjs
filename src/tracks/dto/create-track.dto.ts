@@ -11,15 +11,15 @@ import {
 class Coords {
   @IsNotEmpty()
   @IsNumber()
-  lat: number;
+  latitude: number;
 
   @IsNotEmpty()
   @IsNumber()
-  lng: number;
+  longitude: number;
 
   @IsNotEmpty()
   @IsNumber()
-  alt: number;
+  altitude: number;
 
   @IsNotEmpty()
   @IsNumber()
@@ -37,7 +37,7 @@ class Coords {
 class Point {
   @IsNotEmpty()
   @IsNumber()
-  timeStamp: number;
+  timestamp: number;
 
   @IsNotEmpty()
   @ValidateNested()

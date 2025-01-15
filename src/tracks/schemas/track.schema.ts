@@ -4,13 +4,13 @@ import mongoose from 'mongoose';
 @Schema({ _id: false })
 class Coords {
   @Prop({ required: true })
-  lat: number;
+  latitude: number;
 
   @Prop({ required: true })
-  lng: number;
+  longitude: number;
 
   @Prop({ required: true })
-  alt: number;
+  altitude: number;
 
   @Prop({ required: true })
   accuracy: number;
@@ -25,7 +25,7 @@ class Coords {
 @Schema({ _id: false })
 class Point {
   @Prop({ required: true })
-  timeStamp: number;
+  timestamp: number;
 
   @Prop({ required: true })
   coords: Coords;
